@@ -18,3 +18,28 @@ exports.signUp = async (req, res) => {
     });
   }
 };
+
+exports.signIn = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400).json({
+        message: "Email and Pass are required !!!!",
+      });
+    }
+    const user = await User.findOne({ email });
+    if (!user || !(await user.checkPass(password, user.password))) {
+      res.status(400).json({
+        message: "Email or Password are incorrect !!!",
+      });
+    }
+    res.status(200).json({
+      message: "Logged in !!!",
+    });
+  } catch (error) {
+    res.status(400).json({
+      message: "Fail !",
+      error: error,
+    });
+  }
+};
