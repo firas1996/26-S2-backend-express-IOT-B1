@@ -84,7 +84,9 @@ exports.updateUserById = async (req, res) => {
 exports.deleteUserById = async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
-    res.status(204).json();
+    res.status(200).json({
+      message: "User Delete !!!",
+    });
   } catch (error) {
     res.status(400).json({
       message: "Fail !",
