@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/userRoutes");
+const mqttRoutes = require("./routes/mqttRoutes");
 
 dotenv.config({ path: "./.env" });
 
@@ -17,6 +18,7 @@ mongoose
 const app = express();
 app.use(express.json());
 app.use(userRoutes);
+app.use(mqttRoutes);
 const port = 1234;
 
 app.listen(port, () => {

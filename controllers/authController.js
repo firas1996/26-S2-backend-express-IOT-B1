@@ -29,6 +29,7 @@ exports.signUp = async (req, res) => {
 exports.signIn = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(req.body);
     if (!email || !password) {
       res.status(400).json({
         message: "Email and Pass are required !!!!",
